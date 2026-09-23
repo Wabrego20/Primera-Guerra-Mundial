@@ -10,7 +10,7 @@
     --blanco: #fff;
     --texto: #172536;
     --gris: #d8d2c7;
-    --sombra: rgba(0,0,0,.35);
+    --sombra: rgba(0, 0, 0, .35);
     --transicion: .3s ease;
 }
 
@@ -47,7 +47,6 @@ body {
     align-items: center;
     flex: 1;
     overflow: hidden;
-    background: linear-gradient(to bottom, var(--crema), var(--gris));
 }
 
 
@@ -200,7 +199,7 @@ body {
 .video-card {
     display: flex;
     min-width: 300px;
-    aspect-ratio: 16,9;
+    aspect-ratio: 16, 9;
     flex-direction: column;
     gap: 8px;
     padding: 10px;
@@ -268,8 +267,8 @@ body {
 ===================================================== */
 .pagina-contenedor {
     position: relative;
-    width: min(1400px,95vw);
-    height: min(90vh,900px);
+    width: min(1400px, 95vw);
+    height: min(90vh, 900px);
     padding: 20px;
 
     display: flex;
@@ -300,7 +299,7 @@ body {
 ===================================================== */
 .modal-contenido {
     position: relative;
-    width: min(800px,95vw);
+    width: min(800px, 95vw);
     max-height: 90vh;
     overflow-y: auto;
     padding: 30px;
@@ -449,7 +448,7 @@ body {
 
     .video-card {
         width: 95%;
-        aspect-ratio: 16,9;
+        aspect-ratio: 16, 9;
     }
 
     .modal {
@@ -486,7 +485,8 @@ body {
     align-items: center;
     flex-direction: column;
     color: var(--blanco);
-    h6{
+
+    h6 {
         width: 95%;
         text-align: center;
         margin: 5px;
@@ -504,6 +504,7 @@ body {
     align-items: center;
     margin: 5px;
 }
+
 .footer-titulo h4 {
     display: inline-block;
     border-left: 3px solid var(--rojo);
@@ -606,3 +607,385 @@ body {
     }
 
 }
+
+/* =====================================================
+   EFECTOS DE GUERRA - PORTADA
+===================================================== */
+
+.portada {
+    position: relative;
+}
+
+
+/* Contenedor general de los efectos */
+
+.efectos-guerra {
+    position: absolute;
+    inset: 0;
+
+    overflow: hidden;
+
+    pointer-events: none;
+
+    z-index: 1;
+}
+
+
+/* =====================================================
+   RELÁMPAGO
+===================================================== */
+.relampago {
+    position: absolute;
+    inset: 0;
+
+    /* Fondo con tono azulado/eléctrico nocturno en lugar de blanco plano */
+    background: radial-gradient(
+        circle at 50% 20%, 
+        rgba(220, 235, 255, 0.85) 0%, 
+        rgba(150, 180, 220, 0.4) 40%, 
+        transparent 80%
+    );
+
+    opacity: 0;
+    pointer-events: none;
+    z-index: 5; /* Por encima de todo para iluminar la escena */
+
+    /* Patrón de parpadeo caótico característico de una tormenta */
+    animation: relampagoTormenta 9s cubic-bezier(0.1, 0.8, 0.3, 1) infinite;
+}
+
+
+/* =====================================================
+   HUMO
+===================================================== */
+.humo {
+    position: absolute;
+
+    /* Tamaño base aumentado para dar cobertura */
+    width: 600px;
+    height: 350px;
+
+    /* Forma irregular mediante border-radius desiguales */
+    border-radius: 43% 57% 70% 30% / 45% 45% 55% 55%;
+
+    /* Tono oscuro denso con mezcla de grises y ceniza */
+    background: radial-gradient(ellipse at center,
+            rgba(35, 35, 35, 0.65) 0%,
+            rgba(20, 20, 20, 0.45) 45%,
+            rgba(10, 10, 10, 0) 75%);
+
+    /* Desenfoque ajustado para dar cuerpo sin perder textura */
+    filter: blur(25px);
+
+    opacity: 0.8;
+
+    pointer-events: none;
+
+    /* Capa por encima de la explosión y relámpagos */
+    z-index: 3;
+
+    /* Animación continua en bucle suave */
+    animation: humoDenso linear infinite;
+}
+
+/* Capa 1: Humo de fondo bajo, lento y continuo */
+.humo-1 {
+    left: -150px;
+    bottom: -50px;
+
+    width: 700px;
+    height: 400px;
+
+    animation-duration: 22s;
+}
+
+/* Capa 2: Humo central denso, desfasado para no cortar el flujo */
+.humo-2 {
+    left: 20%;
+    bottom: -80px;
+
+    width: 800px;
+    height: 450px;
+
+    animation-duration: 28s;
+    animation-delay: -9s;
+    /* Inicia a mitad del ciclo para visibilidad constante */
+}
+
+/* Capa 3: Humo lateral derecho con mayor deriva */
+.humo-3 {
+    right: -150px;
+    bottom: -30px;
+
+    width: 650px;
+    height: 380px;
+
+    animation-duration: 25s;
+    animation-delay: -16s;
+    /* Desfase constante */
+}
+
+/* =====================================================
+   ANIMACIÓN DEL RELÁMPAGO
+===================================================== */
+@keyframes relampagoTormenta {
+
+    /* Estado completamente apagado (reposo de la tormenta) */
+    0%, 75%, 100% {
+        opacity: 0;
+        filter: brightness(1);
+    }
+
+    /* --- PRIMER RAYO (Ráfaga inicial doble) --- */
+    76% {
+        opacity: 0.95;
+        filter: brightness(1.8);
+    }
+    76.5% {
+        opacity: 0.1;
+    }
+    77% {
+        opacity: 0.8;
+        filter: brightness(1.5);
+    }
+    77.8% {
+        opacity: 0;
+    }
+
+    /* --- PAUSA BREVE ENTRE TRUENOS --- */
+    79% {
+        opacity: 0;
+    }
+
+    /* --- SEGUNDO RAYO (El impacto principal más fuerte) --- */
+    79.5% {
+        opacity: 1;
+        filter: brightness(2.2);
+        /* Cambio de tono a un destello blanco intenso en el centro */
+        background: radial-gradient(
+            circle at 30% 15%, 
+            rgba(255, 255, 255, 1) 0%, 
+            rgba(180, 210, 255, 0.7) 50%, 
+            transparent 90%
+        );
+    }
+
+    80% {
+        opacity: 0.2;
+    }
+
+    80.3% {
+        opacity: 0.7;
+        filter: brightness(1.4);
+    }
+
+    81% {
+        opacity: 0.05;
+    }
+
+    81.5% {
+        opacity: 0.4;
+    }
+
+    /* Apagado gradual de la descarga */
+    83% {
+        opacity: 0;
+        filter: brightness(1);
+    }
+}
+
+/* =====================================================
+   EXPLOSIÓN CON POSICIONES VARIABLES (CSS)
+===================================================== */
+.explosion {
+    position: absolute;
+
+    /* Posición base en el horizonte */
+    right: 10%;
+    bottom: 18%;
+
+    width: 140px;
+    height: 140px;
+
+    border-radius: 50%;
+
+    background: radial-gradient(
+        circle,
+        rgba(255, 255, 255, 1) 0%,
+        rgba(255, 220, 100, 0.9) 15%,
+        rgba(255, 100, 20, 0.75) 40%,
+        rgba(180, 30, 0, 0.3) 65%,
+        transparent 80%
+    );
+
+    filter: blur(4px);
+    opacity: 0;
+    pointer-events: none;
+    z-index: 2;
+
+    /* Aumentamos la duración total del ciclo para abarcar múltiples detonaciones */
+    animation: explosionMultiple 16s cubic-bezier(0.1, 0.8, 0.3, 1) infinite;
+}
+
+
+/* =====================================================
+   ANIMACIÓN CON 3 EXPLOSIONES EN PUNTOS DISTINTOS
+===================================================== */
+
+@keyframes explosionMultiple {
+
+    /* --- EXPLOSIÓN 1 (En la posición original derecha) --- */
+    0%, 25%, 100% {
+        opacity: 0;
+        transform: translate(0, 0) scale(0.1);
+    }
+
+    26% {
+        opacity: 1;
+        transform: translate(0, 0) scale(0.4);
+    }
+
+    28% {
+        opacity: 0.9;
+        transform: translate(0, 0) scale(1.3);
+    }
+
+    32% {
+        opacity: 0;
+        transform: translate(0, -10px) scale(2.1);
+    }
+
+
+    /* --- EXPLOSIÓN 2 (Lado izquierdo y más abajo) --- */
+    50% {
+        opacity: 0;
+        transform: translate(-50vw, 40px) scale(0.1);
+    }
+
+    51% {
+        opacity: 1;
+        transform: translate(-50vw, 40px) scale(0.4);
+    }
+
+    53% {
+        opacity: 0.9;
+        transform: translate(-50vw, 40px) scale(1.4);
+    }
+
+    57% {
+        opacity: 0;
+        transform: translate(-50vw, 30px) scale(2.2);
+    }
+
+
+    /* --- EXPLOSIÓN 3 (Centro-derecha y más arriba) --- */
+    75% {
+        opacity: 0;
+        transform: translate(-25vw, -30px) scale(0.1);
+    }
+
+    76% {
+        opacity: 1;
+        transform: translate(-25vw, -30px) scale(0.5);
+    }
+
+    78% {
+        opacity: 0.9;
+        transform: translate(-25vw, -30px) scale(1.5);
+    }
+
+    82% {
+        opacity: 0;
+        transform: translate(-25vw, -40px) scale(2.3);
+    }
+}
+
+/* =====================================================
+   RESPLANDOR DEL SUELO EN LLAMAS
+===================================================== */
+
+.suelo-ardiendo {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 120px;
+    background: linear-gradient(to top, rgba(255, 60, 0, 0.45) 0%, rgba(200, 30, 0, 0.15) 50%, transparent 100%);
+    pointer-events: none;
+    z-index: 2;
+    animation: fuegoParpadeo 3s ease-in-out infinite alternate;
+}
+
+@keyframes fuegoParpadeo {
+    0% { opacity: 0.6; filter: blur(8px); }
+    100% { opacity: 0.9; filter: blur(14px); }
+}
+
+/* =====================================================
+   BRASAS Y CHISPAS QUE ASCIENDEN CON EL CALOR
+===================================================== */
+
+.cenizas {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 4;
+}
+
+.cenizas span {
+    position: absolute;
+    bottom: 0px; /* Nacen desde la base */
+
+    width: 4px;
+    height: 8px; /* Forma alargada por la velocidad de subida */
+    border-radius: 50%;
+
+    /* Brillo de brasa al rojo vivo */
+    background: #ff6600;
+    box-shadow: 
+        0 0 8px #ff3300,
+        0 0 14px #ffaa00;
+
+    opacity: 0;
+    animation: chispaSubir linear infinite;
+}
+
+/* Posiciones de las brasas */
+.cenizas span:nth-child(1)  { left: 8%;   animation-duration: 3.5s; }
+.cenizas span:nth-child(2)  { left: 18%;  animation-duration: 4.8s; animation-delay: -1s; background: #ffaa00; }
+.cenizas span:nth-child(3)  { left: 27%;  animation-duration: 3.2s; animation-delay: -2s; }
+.cenizas span:nth-child(4)  { left: 38%;  animation-duration: 5.0s; }
+.cenizas span:nth-child(5)  { left: 46%;  animation-duration: 3.8s; animation-delay: -1.5s; background: #ffcc00; }
+.cenizas span:nth-child(6)  { left: 55%;  animation-duration: 4.2s; }
+.cenizas span:nth-child(7)  { left: 65%;  animation-duration: 3.0s; animation-delay: -2.5s; }
+.cenizas span:nth-child(8)  { left: 73%;  animation-duration: 4.6s; background: #ffaa00; }
+.cenizas span:nth-child(9)  { left: 82%;  animation-duration: 3.6s; animation-delay: -0.8s; }
+.cenizas span:nth-child(10) { left: 91%;  animation-duration: 4.4s; }
+.cenizas span:nth-child(11) { left: 35%;  animation-duration: 3.1s; animation-delay: -2.2s; }
+.cenizas span:nth-child(12) { left: 60%;  animation-duration: 4.9s; animation-delay: -1.1s; }
+
+
+/* =====================================================
+   ANIMACIONES DE SUBIDA VERTICAL
+===================================================== */
+
+/* Las brasas son arrastradas hacia arriba zigzagueando por el aire caliente */
+@keyframes chispaSubir {
+    0% {
+        bottom: 0%;
+        opacity: 0;
+        transform: translateX(0) scale(0.6);
+    }
+    10% {
+        opacity: 1;
+    }
+    90% {
+        opacity: 0.8;
+    }
+    100% {
+        bottom: 90%;
+        opacity: 0;
+        transform: translateX(35px) scale(1.4); /* Leve deriva diagonal */
+    }
+}
+
