@@ -188,10 +188,10 @@ body {
 ===================================================== */
 .videos-presentacion {
     width: 95%;
-    margin: auto;
+    margin: auto 0;
     display: flex;
     justify-content: center;
-    align-items: stretch;
+    align-items: center;
     flex-wrap: wrap;
     gap: 10px;
     margin: 10px 0;
@@ -216,7 +216,7 @@ body {
 }
 
 .video-card:hover .video-icono {
-    transform: scale(1.12);
+    transform: scale(1.1);
     background: var(--blanco);
 }
 
@@ -443,6 +443,8 @@ body {
     .videos-presentacion {
         width: 100%;
         flex-direction: column;
+        justify-content: center;
+        align-items: center;
     }
 
     .video-card {
